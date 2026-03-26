@@ -21,14 +21,14 @@ export function ParameterSetsPage() {
   };
 
   return (
-    <Paper className="p-6 max-w-4xl mx-auto">
+    <Paper sx={{ p: 3, maxWidth: '1200px', mx: 'auto' }}>
       {/* Title */}
-      <Typography variant="h5" component="h1" className="mb-6 font-semibold">
+      <Typography variant="h5" component="h1" sx={{ mb: 4, fontWeight: 600 }}>
         Parameter Set
       </Typography>
 
       {/* Section 1: Basic Information */}
-      <Box className="space-y-6 mb-8">
+      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3, mb: 4 }}>
         <TextField
           label="Name"
           value={parameterSet.name}
@@ -47,7 +47,7 @@ export function ParameterSetsPage() {
           variant="outlined"
         />
         
-        <Box className="grid grid-cols-2 gap-6">
+        <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 3 }}>
           <TextField
             label="Version"
             value={parameterSet.version || "1.0"}
@@ -77,7 +77,7 @@ export function ParameterSetsPage() {
       <Separator className="my-8" />
 
       {/* Section 2: Week Configuration */}
-      <Box className="space-y-6 mb-8">
+      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3, mb: 4 }}>
         <TextField
           select
           label="Week type"
@@ -90,7 +90,7 @@ export function ParameterSetsPage() {
           <MenuItem value="Non-plenary week">Non-plenary week</MenuItem>
         </TextField>
         
-        <Box className="grid grid-cols-2 gap-6">
+        <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 3 }}>
           <TextField
             label="Max. daily working hours"
             type="number"
@@ -118,10 +118,10 @@ export function ParameterSetsPage() {
 
       {/* Section 3: Constraints (Placeholder) */}
       <Box>
-        <Typography variant="h6" component="h2" className="mb-4">
+        <Typography variant="h6" component="h2" sx={{ mb: 2 }}>
           Constraints
         </Typography>
-        <Box className="border rounded-md p-4 text-center text-gray-500">
+        <Box sx={{ border: 1, borderColor: 'divider', borderRadius: 1, p: 4, textAlign: 'center', color: 'text.secondary' }}>
           <Typography variant="body2">
             Constraints data table will be implemented here
           </Typography>

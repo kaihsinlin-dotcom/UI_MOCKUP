@@ -65,7 +65,7 @@ export function ParameterSetsPage() {
           <TextField
             label="Author"
             value={parameterSet.author || parameterSet.createdBy}
-            onChange={isAuthorEditable ? handleChange("author") : undefined}
+            onChange={handleChange("author")}
             fullWidth
             variant="outlined"
             InputProps={{

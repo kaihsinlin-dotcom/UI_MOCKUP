@@ -58,7 +58,6 @@ export const technicians: Technician[] = [
 ];
 
 export const meetingSessions: MeetingSession[] = [
-  // Monday
   {
     id: "SES001",
     title: "Board Meeting",
@@ -89,8 +88,6 @@ export const meetingSessions: MeetingSession[] = [
     requiredSkills: ["Audio", "Video"],
     technicianCount: 1,
   },
-  
-  // Tuesday
   {
     id: "SES004",
     title: "Investor Presentation",
@@ -121,8 +118,6 @@ export const meetingSessions: MeetingSession[] = [
     requiredSkills: ["Audio"],
     technicianCount: 1,
   },
-  
-  // Wednesday
   {
     id: "SES007",
     title: "Client Demo",
@@ -153,8 +148,6 @@ export const meetingSessions: MeetingSession[] = [
     requiredSkills: ["Audio", "Video", "Lighting", "Livestream"],
     technicianCount: 3,
   },
-  
-  // Thursday
   {
     id: "SES010",
     title: "Strategy Session",
@@ -185,8 +178,6 @@ export const meetingSessions: MeetingSession[] = [
     requiredSkills: ["Audio", "Video"],
     technicianCount: 1,
   },
-  
-  // Friday
   {
     id: "SES013",
     title: "Project Review",
@@ -446,9 +437,7 @@ export const parameterSets: ParameterSet[] = [
   },
 ];
 
-// Mock data for Room Assignments in Run Detail View
 export const roomAssignments: RoomAssignment[] = [
-  // BRU town - ASP rooms - Monday
   {
     id: "RA001",
     room: "ASP-1",
@@ -494,8 +483,6 @@ export const roomAssignments: RoomAssignment[] = [
     status: "WIP",
     requiredTechnicians: 2,
   },
-  
-  // BRU town - ASP rooms - Tuesday
   {
     id: "RA004",
     room: "ASP-1",
@@ -526,8 +513,6 @@ export const roomAssignments: RoomAssignment[] = [
     status: "APR",
     requiredTechnicians: 1,
   },
-  
-  // BRU town - ASP rooms - Wednesday
   {
     id: "RA006",
     room: "ASP-1",
@@ -588,8 +573,6 @@ export const roomAssignments: RoomAssignment[] = [
     status: "WAI",
     requiredTechnicians: 1,
   },
-  
-  // BRU town - ATR rooms - Tuesday
   {
     id: "RA020",
     room: "ATR-JCH",
@@ -605,8 +588,6 @@ export const roomAssignments: RoomAssignment[] = [
     status: "APR",
     requiredTechnicians: 1,
   },
-  
-  // BRU town - JAN rooms - Wednesday
   {
     id: "RA030",
     room: "JAN-JQ2",
@@ -667,8 +648,6 @@ export const roomAssignments: RoomAssignment[] = [
     status: "APR",
     requiredTechnicians: 3,
   },
-  
-  // BRU town - JAM rooms - Wednesday
   {
     id: "RA040",
     room: "JAM-JAM-MEZ_2",
@@ -684,8 +663,6 @@ export const roomAssignments: RoomAssignment[] = [
     status: "APR",
     requiredTechnicians: 2,
   },
-  
-  // LUX town - STR rooms - Monday
   {
     id: "RA050",
     room: "STR-A1",
@@ -716,8 +693,6 @@ export const roomAssignments: RoomAssignment[] = [
     status: "WIP",
     requiredTechnicians: 3,
   },
-  
-  // LUX town - LDW rooms - Monday
   {
     id: "RA060",
     room: "LDW-AGORA",
@@ -763,8 +738,6 @@ export const roomAssignments: RoomAssignment[] = [
     status: "TBC",
     requiredTechnicians: 1,
   },
-  
-  // BRU town - ASP rooms - Thursday
   {
     id: "RA070",
     room: "ASP-1",
@@ -795,8 +768,6 @@ export const roomAssignments: RoomAssignment[] = [
     status: "APR",
     requiredTechnicians: 2,
   },
-  
-  // BRU town - ASP rooms - Friday
   {
     id: "RA080",
     room: "ASP-1",
@@ -827,8 +798,6 @@ export const roomAssignments: RoomAssignment[] = [
     status: "APR",
     requiredTechnicians: 1,
   },
-  
-  // BRU town - ATR rooms - Thursday
   {
     id: "RA090",
     room: "ATR-JCH",
@@ -844,8 +813,6 @@ export const roomAssignments: RoomAssignment[] = [
     status: "WIP",
     requiredTechnicians: 3,
   },
-  
-  // BRU town - JAN rooms - Friday
   {
     id: "RA100",
     room: "JAN-JQ2",
@@ -861,8 +828,6 @@ export const roomAssignments: RoomAssignment[] = [
     status: "APR",
     requiredTechnicians: 1,
   },
-  
-  // LUX town - STR rooms - Thursday
   {
     id: "RA110",
     room: "STR-A1",
@@ -878,8 +843,6 @@ export const roomAssignments: RoomAssignment[] = [
     status: "APR",
     requiredTechnicians: 2,
   },
-  
-  // LUX town - LDW rooms - Friday
   {
     id: "RA120",
     room: "LDW-AGORA",
@@ -895,8 +858,6 @@ export const roomAssignments: RoomAssignment[] = [
     status: "APR",
     requiredTechnicians: 1,
   },
-  
-  // Weekend sessions - Saturday
   {
     id: "RA130",
     room: "ASP-1",
@@ -927,8 +888,6 @@ export const roomAssignments: RoomAssignment[] = [
     status: "WIP",
     requiredTechnicians: 1,
   },
-  
-  // Weekend sessions - Sunday
   {
     id: "RA140",
     room: "ASP-2",
@@ -958,119 +917,5 @@ export const roomAssignments: RoomAssignment[] = [
     requester: "Fiona Green",
     status: "WAI",
     requiredTechnicians: 2,
-  },
-];
-
-// Mock data for Technician Assignments in Run Detail View
-export const technicianAssignments: TechnicianAssignment[] = [
-  {
-    id: "TA001",
-    technician: "John Smith",
-    day: "Monday",
-    sessions: 2,
-    maxSessions: 4,
-    utilization: 50,
-    assignedRooms: ["Main Auditorium"],
-    skills: ["Audio", "Video", "Livestream"],
-    status: "Available",
-  },
-  {
-    id: "TA002",
-    technician: "Sarah Johnson",
-    day: "Monday",
-    sessions: 1,
-    maxSessions: 5,
-    utilization: 20,
-    assignedRooms: ["Executive Room A"],
-    skills: ["Audio", "Video", "Recording"],
-    status: "Available",
-  },
-  {
-    id: "TA003",
-    technician: "David Chen",
-    day: "Monday",
-    sessions: 2,
-    maxSessions: 4,
-    utilization: 50,
-    assignedRooms: ["Executive Room A", "Main Auditorium"],
-    skills: ["Video", "Recording", "Livestream"],
-    status: "Available",
-  },
-  {
-    id: "TA004",
-    technician: "Michael Brown",
-    day: "Monday",
-    sessions: 1,
-    maxSessions: 3,
-    utilization: 33,
-    assignedRooms: ["Main Auditorium"],
-    skills: ["Lighting", "Video"],
-    status: "Available",
-  },
-  {
-    id: "TA005",
-    technician: "Emily Davis",
-    day: "Monday",
-    sessions: 1,
-    maxSessions: 4,
-    utilization: 25,
-    assignedRooms: ["Conference Room B"],
-    skills: ["Audio", "Livestream"],
-    status: "Available",
-  },
-  {
-    id: "TA006",
-    technician: "John Smith",
-    day: "Tuesday",
-    sessions: 2,
-    maxSessions: 4,
-    utilization: 50,
-    assignedRooms: ["Executive Room A"],
-    skills: ["Audio", "Video", "Livestream"],
-    status: "Available",
-  },
-  {
-    id: "TA007",
-    technician: "Sarah Johnson",
-    day: "Tuesday",
-    sessions: 2,
-    maxSessions: 5,
-    utilization: 40,
-    assignedRooms: ["Main Auditorium", "Meeting Room 3"],
-    skills: ["Audio", "Video", "Recording"],
-    status: "Available",
-  },
-  {
-    id: "TA008",
-    technician: "Emily Davis",
-    day: "Tuesday",
-    sessions: 1,
-    maxSessions: 4,
-    utilization: 25,
-    assignedRooms: ["Executive Room A"],
-    skills: ["Audio", "Livestream"],
-    status: "Available",
-  },
-  {
-    id: "TA009",
-    technician: "John Smith",
-    day: "Wednesday",
-    sessions: 4,
-    maxSessions: 4,
-    utilization: 100,
-    assignedRooms: ["Studio A", "Main Auditorium"],
-    skills: ["Audio", "Video", "Livestream"],
-    status: "Fully Booked",
-  },
-  {
-    id: "TA010",
-    technician: "David Chen",
-    day: "Wednesday",
-    sessions: 5,
-    maxSessions: 4,
-    utilization: 125,
-    assignedRooms: ["Main Auditorium"],
-    skills: ["Video", "Recording", "Livestream"],
-    status: "Overbooked",
   },
 ];

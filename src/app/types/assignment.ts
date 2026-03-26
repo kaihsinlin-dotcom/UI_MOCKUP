@@ -2,9 +2,14 @@ export interface ParameterSet {
   id: string;
   name: string;
   description: string;
+  version?: string;
+  author?: string;
   createdDate: string;
   createdBy: string;
   usageCount: number;
+  weekType?: "Plenary week" | "Non-plenary week";
+  maxDailyWorkingHours?: number;
+  maxDailyOvertimeHours?: number;
   parameters: {
     maxSessionsPerDay: number;
     prioritizeSkills: boolean;

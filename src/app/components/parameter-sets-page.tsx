@@ -93,15 +93,15 @@ export function ParameterSetsPage() {
           <MenuItem value="Non-plenary week">Non-plenary week</MenuItem>
         </TextField>
         
-        <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 3 }}>
+        <Box sx={{ display: 'flex', gap: 3 }}>
           <TextField
             label="Max. daily working hours"
             type="number"
             value={parameterSet.maxDailyWorkingHours || 8}
             onChange={handleChange("maxDailyWorkingHours")}
-            fullWidth
             variant="outlined"
             inputProps={{ min: 0, step: 0.5 }}
+            sx={{ maxWidth: '200px' }}
           />
           
           <TextField
@@ -109,9 +109,9 @@ export function ParameterSetsPage() {
             type="number"
             value={parameterSet.maxDailyOvertimeHours || 0}
             onChange={handleChange("maxDailyOvertimeHours")}
-            fullWidth
             variant="outlined"
             inputProps={{ min: 0, step: 0.5 }}
+            sx={{ maxWidth: '200px' }}
           />
         </Box>
       </Box>

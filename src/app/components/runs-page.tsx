@@ -213,7 +213,7 @@ export function RunsPage({
                     <TableCell className="font-medium">
                       <Link
                         to={`/run/${run.id}`}
-                      
+                        target="_blank"
                         rel="noopener noreferrer"
                         style={{ color: 'inherit', textDecoration: 'none', cursor: 'pointer' }}
                       >
@@ -225,6 +225,7 @@ export function RunsPage({
                     <TableCell>
                       <Link
                         to={`/run/${run.id}`}
+                        target="_blank"
                         rel="noopener noreferrer"
                         style={{ color: 'inherit', textDecoration: 'none', cursor: 'pointer' }}
                       >

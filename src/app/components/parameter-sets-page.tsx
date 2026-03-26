@@ -20,6 +20,9 @@ export function ParameterSetsPage() {
     });
   };
 
+  // Check if the author field should be editable
+  const isAuthorEditable = (parameterSet.author || parameterSet.createdBy) === "My self";
+
   return (
     <Paper sx={{ p: 3, maxWidth: '1200px', mx: 'auto' }}>
       {/* Title */}
@@ -62,13 +65,13 @@ export function ParameterSetsPage() {
           <TextField
             label="Author"
             value={parameterSet.author || parameterSet.createdBy}
-            onChange={handleChange("author")}
+            onChange={isAuthorEditable ? handleChange("author") : undefined}
             fullWidth
             variant="outlined"
             InputProps={{
-              readOnly: (parameterSet.author || parameterSet.createdBy) !== "My self",
+              readOnly: !isAuthorEditable,
             }}
-            disabled={(parameterSet.author || parameterSet.createdBy) !== "My self"}
+            disabled={!isAuthorEditable}
           />
         </Box>
       </Box>

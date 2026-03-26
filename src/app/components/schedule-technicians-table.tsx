@@ -300,7 +300,7 @@ export function ScheduleTechniciansTable({
   const getTechnicianStatus = (technician: string): string[] => {
     const statuses: string[] = [];
     const blocks = technicianScheduleBlocks.filter((b) => b.technician === technician);
-    if (blocks.some((b) => b.type === "mob-location")) statuses.push("MOB");
+    if (blocks.some((b) => b.type === "mob-location" || (b.type === "assignment" && b.serviceType === "MOB"))) statuses.push("MOB");
     if (blocks.some((b) => b.type === "assignment" && b.serviceType === "REG")) statuses.push("REG");
     if (blocks.some((b) => b.type === "unavailable")) statuses.push("Unavailable");
     return statuses;

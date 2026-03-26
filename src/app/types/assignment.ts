@@ -90,7 +90,7 @@ export interface TechnicianAssignment {
   utilization: number; // percentage
   assignedRooms: string[];
   skills: string[];
-  status: "Available" | "Fully Booked" | "Overbooked";
+  status: "MOB" | "REG" | "Unavailable";
 }
 
 export type DayOfWeek = "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday";

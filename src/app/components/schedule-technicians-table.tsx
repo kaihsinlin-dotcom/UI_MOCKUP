@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Table,
   TableBody,
@@ -294,7 +294,37 @@ export function ScheduleTechniciansTable({
     );
   };
 
-  const technicianNames = getTechnicianNames();
+  const allTechnicianNames = getTechnicianNames();
+
+  // Determine status for a technician based on their schedule blocks
+  const getTechnicianStatus = (technician: string): string[] => {
+    const statuses: string[] = [];
+    const blocks = technicianScheduleBlocks.filter((b) => b.technician === technician);
+    if (blocks.some((b) => b.type === "mob-location")) statuses.push("MOB");
+    if (blocks.some((b) => b.type === "assignment" && b.serviceType === "REG")) statuses.push("REG");
+    if (blocks.some((b) => b.type === "unavailable")) statuses.push("Unavailable");
+    return statuses;
+  };
+
+  // Filter technician names
+  const technicianNames = allTechnicianNames.filter((name) => {
+    // Filter by technician name
+    if (technicianFilter !== "all" && name !== technicianFilter) return false;
+    // Filter by status
+    if (statusFilter !== "all") {
+      const statuses = getTechnicianStatus(name);
+      if (!statuses.includes(statusFilter)) return false;
+    }
+    // Filter by service type
+    if (serviceTypeFilter !== "all") {
+      const blocks = technicianScheduleBlocks.filter((b) => b.technician === name);
+      const hasServiceType = blocks.some(
+        (b) => b.type === "assignment" && b.serviceType === serviceTypeFilter
+      );
+      if (!hasServiceType) return false;
+    }
+    return true;
+  });
 
   return (
     <div className="rounded-md border overflow-visible">

@@ -31,11 +31,11 @@ export function TechniciansTable({
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case "Unavailable":
-        return { variant: "filled" as const, color: "success" as const };
-      case "Fully Booked":
+      case "MOB":
         return { variant: "filled" as const, color: "warning" as const };
-      case "Overbooked":
+      case "REG":
+        return { variant: "filled" as const, color: "success" as const };
+      case "Unavailable":
         return { variant: "filled" as const, color: "error" as const };
       default:
         return { variant: "outlined" as const, color: "default" as const };

@@ -71,7 +71,7 @@ export function RunDetailPage() {
   };
 
   const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
-  const technicianStatuses = ["Available", "Fully Booked", "Overbooked"];
+  const technicianStatuses = ["MOB", "REG", "Unavailable"];
   
   // Get unique values for filters
   const rooms = Array.from(new Set(roomAssignments.map((r) => r.room)));
@@ -306,7 +306,7 @@ export function RunDetailPage() {
         />
       )}
       {activeTab === 1 && (
-        <ScheduleTechniciansTable dayFilter={dayFilter} statusFilter={statusFilter} />
+        <ScheduleTechniciansTable dayFilter={dayFilter} statusFilter={statusFilter} technicianFilter={technicianNameFilter} serviceTypeFilter={techServiceTypeFilter} />
       )}
     </Box>
   );

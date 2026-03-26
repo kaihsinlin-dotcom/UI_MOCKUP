@@ -28,7 +28,7 @@ export function ParameterSetsPage() {
       </Typography>
 
       {/* Section 1: Basic Information */}
-      <Box className="space-y-4 mb-6">
+      <Box className="space-y-6 mb-8">
         <TextField
           label="Name"
           value={parameterSet.name}
@@ -47,7 +47,7 @@ export function ParameterSetsPage() {
           variant="outlined"
         />
         
-        <Box className="grid grid-cols-2 gap-4">
+        <Box className="grid grid-cols-2 gap-6">
           <TextField
             label="Version"
             value={parameterSet.version || "1.0"}
@@ -62,21 +62,22 @@ export function ParameterSetsPage() {
           <TextField
             label="Author"
             value={parameterSet.author || parameterSet.createdBy}
+            onChange={handleChange("author")}
             fullWidth
             variant="outlined"
             InputProps={{
-              readOnly: true,
+              readOnly: (parameterSet.author || parameterSet.createdBy) !== "My self",
             }}
-            disabled
+            disabled={(parameterSet.author || parameterSet.createdBy) !== "My self"}
           />
         </Box>
       </Box>
 
       {/* Divider */}
-      <Separator className="my-6" />
+      <Separator className="my-8" />
 
       {/* Section 2: Week Configuration */}
-      <Box className="space-y-4 mb-6">
+      <Box className="space-y-6 mb-8">
         <TextField
           select
           label="Week type"
@@ -89,7 +90,7 @@ export function ParameterSetsPage() {
           <MenuItem value="Non-plenary week">Non-plenary week</MenuItem>
         </TextField>
         
-        <Box className="grid grid-cols-2 gap-4">
+        <Box className="grid grid-cols-2 gap-6">
           <TextField
             label="Max. daily working hours"
             type="number"
@@ -113,7 +114,7 @@ export function ParameterSetsPage() {
       </Box>
 
       {/* Divider */}
-      <Separator className="my-6" />
+      <Separator className="my-8" />
 
       {/* Section 3: Constraints (Placeholder) */}
       <Box>

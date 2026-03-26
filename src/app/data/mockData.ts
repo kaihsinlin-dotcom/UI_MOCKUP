@@ -455,6 +455,25 @@ export const parameterSets: ParameterSet[] = [
       conflictPenalty: 5,
     },
   },
+  {
+    id: "PARAM005",
+    name: "My Custom Plan",
+    description: "Personalized parameter set for specific needs",
+    version: "1.0",
+    author: "My self",
+    createdDate: "2026-03-01T10:00:00Z",
+    createdBy: "My self",
+    usageCount: 2,
+    weekType: "Plenary week",
+    maxDailyWorkingHours: 8,
+    maxDailyOvertimeHours: 2,
+    parameters: {
+      maxSessionsPerDay: 4,
+      prioritizeSkills: false,
+      allowOvertime: false,
+      conflictPenalty: 5,
+    },
+  },
 ];
 
 export const roomAssignments: RoomAssignment[] = [

@@ -20,15 +20,18 @@ export function ParameterSetsPage() {
     });
   };
 
+  // Check if the author field should be editable
+  const isAuthorEditable = (parameterSet.author || parameterSet.createdBy) === "My self";
+
   return (
-    <Paper className="p-6 max-w-4xl mx-auto">
+    <Paper sx={{ p: 3, maxWidth: '1200px', mx: 'auto' }}>
       {/* Title */}
-      <Typography variant="h5" component="h1" className="mb-6 font-semibold">
+      <Typography variant="h5" component="h1" sx={{ mb: 4, fontWeight: 600 }}>
         Parameter Set
       </Typography>
 
       {/* Section 1: Basic Information */}
-      <Box className="space-y-4 mb-6">
+      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3, mb: 4 }}>
         <TextField
           label="Name"
           value={parameterSet.name}
@@ -47,7 +50,7 @@ export function ParameterSetsPage() {
           variant="outlined"
         />
         
-        <Box className="grid grid-cols-2 gap-4">
+        <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 3 }}>
           <TextField
             label="Version"
             value={parameterSet.version || "1.0"}
@@ -62,21 +65,22 @@ export function ParameterSetsPage() {
           <TextField
             label="Author"
             value={parameterSet.author || parameterSet.createdBy}
+            onChange={handleChange("author")}
             fullWidth
             variant="outlined"
             InputProps={{
-              readOnly: true,
+              readOnly: !isAuthorEditable,
             }}
-            disabled
+            disabled={!isAuthorEditable}
           />
         </Box>
       </Box>
 
       {/* Divider */}
-      <Separator className="my-6" />
+      <Separator className="my-8" />
 
       {/* Section 2: Week Configuration */}
-      <Box className="space-y-4 mb-6">
+      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3, mb: 4 }}>
         <TextField
           select
           label="Week type"
@@ -89,15 +93,15 @@ export function ParameterSetsPage() {
           <MenuItem value="Non-plenary week">Non-plenary week</MenuItem>
         </TextField>
         
-        <Box className="grid grid-cols-2 gap-4">
+        <Box sx={{ display: 'flex', gap: 3 }}>
           <TextField
             label="Max. daily working hours"
             type="number"
             value={parameterSet.maxDailyWorkingHours || 8}
             onChange={handleChange("maxDailyWorkingHours")}
-            fullWidth
             variant="outlined"
             inputProps={{ min: 0, step: 0.5 }}
+            sx={{ maxWidth: '200px' }}
           />
           
           <TextField
@@ -105,22 +109,22 @@ export function ParameterSetsPage() {
             type="number"
             value={parameterSet.maxDailyOvertimeHours || 0}
             onChange={handleChange("maxDailyOvertimeHours")}
-            fullWidth
             variant="outlined"
             inputProps={{ min: 0, step: 0.5 }}
+            sx={{ maxWidth: '200px' }}
           />
         </Box>
       </Box>
 
       {/* Divider */}
-      <Separator className="my-6" />
+      <Separator className="my-8" />
 
       {/* Section 3: Constraints (Placeholder) */}
       <Box>
-        <Typography variant="h6" component="h2" className="mb-4">
+        <Typography variant="h6" component="h2" sx={{ mb: 2 }}>
           Constraints
         </Typography>
-        <Box className="border rounded-md p-4 text-center text-gray-500">
+        <Box sx={{ border: 1, borderColor: 'divider', borderRadius: 1, p: 4, textAlign: 'center', color: 'text.secondary' }}>
           <Typography variant="body2">
             Constraints data table will be implemented here
           </Typography>

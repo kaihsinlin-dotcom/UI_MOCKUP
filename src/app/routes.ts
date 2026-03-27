@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router";
 import Root from "./components/root";
 import { RunsPage } from "./components/runs-page";
 import { ParameterSetsPage } from "./components/parameter-sets-page";
+import { ParameterSetDetailPage } from "./components/parameter-set-details";
 import { RunDetailPage } from "./components/run-detail-page";
 
 export const router = createBrowserRouter([
@@ -17,5 +18,9 @@ export const router = createBrowserRouter([
   {
     path: "/run/:runId",
     Component: RunDetailPage,
+  },
+  {
+    path: "/parameter-set/:parameterSetId",
+    Component: ParameterSetDetailPage,
   },
 ]);

@@ -391,6 +391,43 @@ export const parameterSets: ParameterSet[] = [
     weekType: "Plenary week",
     maxDailyWorkingHours: 8,
     maxDailyOvertimeHours: 2,
+    constraints: [
+      {
+        id: "CONST001",
+        name: "Max Sessions Per Technician",
+        type: "Hard Constraint",
+        weight: 10,
+        description: "Ensures no technician exceeds maximum daily sessions",
+      },
+      {
+        id: "CONST002",
+        name: "Skill Matching",
+        type: "Soft Constraint",
+        weight: 7,
+        description: "Prioritizes matching technician skills with session requirements",
+      },
+      {
+        id: "CONST003",
+        name: "Workload Balance",
+        type: "Soft Constraint",
+        weight: 5,
+        description: "Distributes workload evenly across all available technicians",
+      },
+      {
+        id: "CONST004",
+        name: "Unavailability Compliance",
+        type: "Hard Constraint",
+        weight: 10,
+        description: "Respects technician unavailable days and time slots",
+      },
+      {
+        id: "CONST005",
+        name: "Overtime Minimization",
+        type: "Soft Constraint",
+        weight: 3,
+        description: "Minimizes overtime hours across all technicians",
+      },
+    ],
     parameters: {
       maxSessionsPerDay: 4,
       prioritizeSkills: false,

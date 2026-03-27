@@ -4,14 +4,28 @@ import {
   Paper,
   Typography,
   Box,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  IconButton,
+  InputAdornment,
 } from "@mui/material";
+import EditIcon from "@mui/icons-material/Edit";
+import CheckIcon from "@mui/icons-material/Check";
+import CloseIcon from "@mui/icons-material/Close";
 import { Separator } from "./ui/separator";
 import { parameterSets } from "../data/mockData";
 import { useState } from "react";
+import { Constraint } from "../types/assignment";
 
 export function ParameterSetsPage() {
   // Use the first parameter set as default for demonstration
   const [parameterSet, setParameterSet] = useState(parameterSets[0]);
+  const [editingConstraintId, setEditingConstraintId] = useState<string | null>(null);
+  const [editedWeight, setEditedWeight] = useState<number>(0);
 
   const handleChange = (field: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
     setParameterSet({
@@ -20,11 +34,34 @@ export function ParameterSetsPage() {
     });
   };
 
+  const handleEditWeight = (constraint: Constraint) => {
+    setEditingConstraintId(constraint.id);
+    setEditedWeight(constraint.weight);
+  };
+
+  const handleSaveWeight = (constraintId: string) => {
+    if (parameterSet.constraints) {
+      const updatedConstraints = parameterSet.constraints.map((c) =>
+        c.id === constraintId ? { ...c, weight: editedWeight } : c
+      );
+      setParameterSet({
+        ...parameterSet,
+        constraints: updatedConstraints,
+      });
+    }
+    setEditingConstraintId(null);
+  };
+
+  const handleCancelEdit = () => {
+    setEditingConstraintId(null);
+    setEditedWeight(0);
+  };
+
   // Check if the author field should be editable
   const isAuthorEditable = (parameterSet.author || parameterSet.createdBy) === "My self";
 
   return (
-    <Paper sx={{ p: 3, maxWidth: '1200px', mx: 'auto' }}>
+    <Paper sx={{ p: 3 }}>
       {/* Title */}
       <Typography variant="h5" component="h1" sx={{ mb: 4, fontWeight: 600 }}>
         Parameter Set
@@ -119,16 +156,85 @@ export function ParameterSetsPage() {
       {/* Divider */}
       <Separator className="my-8" />
 
-      {/* Section 3: Constraints (Placeholder) */}
+      {/* Section 3: Constraints */}
       <Box>
         <Typography variant="h6" component="h2" sx={{ mb: 2 }}>
           Constraints
         </Typography>
-        <Box sx={{ border: 1, borderColor: 'divider', borderRadius: 1, p: 4, textAlign: 'center', color: 'text.secondary' }}>
-          <Typography variant="body2">
-            Constraints data table will be implemented here
-          </Typography>
-        </Box>
+        {parameterSet.constraints && parameterSet.constraints.length > 0 ? (
+          <TableContainer component={Paper} variant="outlined">
+            <Table>
+              <TableHead>
+                <TableRow sx={{ bgcolor: 'grey.50' }}>
+                  <TableCell sx={{ fontWeight: 600, width: '25%' }}>Name</TableCell>
+                  <TableCell sx={{ fontWeight: 600, width: '20%' }}>Type</TableCell>
+                  <TableCell sx={{ fontWeight: 600, width: '20%' }}>Weight</TableCell>
+                  <TableCell sx={{ fontWeight: 600, width: '35%' }}>Description</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {parameterSet.constraints.map((constraint) => (
+                  <TableRow key={constraint.id} hover>
+                    <TableCell>{constraint.name}</TableCell>
+                    <TableCell>{constraint.type}</TableCell>
+                    <TableCell>
+                      {editingConstraintId === constraint.id ? (
+                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                          <TextField
+                            type="number"
+                            value={editedWeight}
+                            onChange={(e) => setEditedWeight(Number(e.target.value))}
+                            size="small"
+                            inputProps={{ min: 0, max: 10, step: 1 }}
+                            sx={{ width: '80px' }}
+                          />
+                          <IconButton
+                            size="small"
+                            color="primary"
+                            onClick={() => handleSaveWeight(constraint.id)}
+                            sx={{ p: 0.5 }}
+                          >
+                            <CheckIcon fontSize="small" />
+                          </IconButton>
+                          <IconButton
+                            size="small"
+                            color="error"
+                            onClick={handleCancelEdit}
+                            sx={{ p: 0.5 }}
+                          >
+                            <CloseIcon fontSize="small" />
+                          </IconButton>
+                        </Box>
+                      ) : (
+                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                          <Typography variant="body2">{constraint.weight}</Typography>
+                          <IconButton
+                            size="small"
+                            onClick={() => handleEditWeight(constraint)}
+                            sx={{ p: 0.5 }}
+                          >
+                            <EditIcon fontSize="small" />
+                          </IconButton>
+                        </Box>
+                      )}
+                    </TableCell>
+                    <TableCell>
+                      <Typography variant="body2" sx={{ whiteSpace: 'normal', wordWrap: 'break-word' }}>
+                        {constraint.description}
+                      </Typography>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        ) : (
+          <Box sx={{ border: 1, borderColor: 'divider', borderRadius: 1, p: 4, textAlign: 'center', color: 'text.secondary' }}>
+            <Typography variant="body2">
+              No constraints defined
+            </Typography>
+          </Box>
+        )}
       </Box>
     </Paper>
   );

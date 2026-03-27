@@ -1,3 +1,11 @@
+export interface Constraint {
+  id: string;
+  name: string;
+  type: string;
+  weight: number;
+  description: string;
+}
+
 export interface ParameterSet {
   id: string;
   name: string;
@@ -10,6 +18,7 @@ export interface ParameterSet {
   weekType?: "Plenary week" | "Non-plenary week";
   maxDailyWorkingHours?: number;
   maxDailyOvertimeHours?: number;
+  constraints?: Constraint[];
   parameters: {
     maxSessionsPerDay: number;
     prioritizeSkills: boolean;

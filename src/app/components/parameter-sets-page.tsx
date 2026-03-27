@@ -156,7 +156,7 @@ export function ParameterSetsPage() {
       {/* Divider */}
       <Separator className="my-8" />
 
-      {/* Section 3: Constraints Table */}
+      {/* Section 3: Constraints */}
       <Box>
         <Typography variant="h6" component="h2" sx={{ mb: 2 }}>
           Constraints

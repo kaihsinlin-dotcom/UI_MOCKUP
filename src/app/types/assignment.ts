@@ -1,3 +1,10 @@
+export interface Constraint {
+  name: string;
+  type: string;
+  weight: number;
+  description: string;
+}
+
 export interface ParameterSet {
   id: string;
   name: string;
@@ -16,6 +23,7 @@ export interface ParameterSet {
     allowOvertime: boolean;
     conflictPenalty: number;
   };
+  constraints?: Constraint[];
 }
 
 export interface AssignmentRun {

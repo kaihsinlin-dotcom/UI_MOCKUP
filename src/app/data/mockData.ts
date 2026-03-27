@@ -397,6 +397,13 @@ export const parameterSets: ParameterSet[] = [
       allowOvertime: false,
       conflictPenalty: 5,
     },
+    constraints: [
+      { name: "Max sessions per day", type: "Hard", weight: 1, description: "Limits the maximum number of sessions a technician can be assigned per day" },
+      { name: "Skill match preference", type: "Soft", weight: 5, description: "Prefer assigning technicians whose skills match the session requirements" },
+      { name: "Consecutive sessions", type: "Soft", weight: 3, description: "Penalizes consecutive sessions assigned without a break" },
+      { name: "Overtime limit", type: "Hard", weight: 1, description: "Enforces the maximum overtime hours per technician" },
+      { name: "Room capacity", type: "Hard", weight: 1, description: "Ensures the number of assigned technicians does not exceed room capacity" },
+    ],
   },
   {
     id: "PARAM002",
@@ -416,6 +423,13 @@ export const parameterSets: ParameterSet[] = [
       allowOvertime: false,
       conflictPenalty: 3,
     },
+    constraints: [
+      { name: "Max sessions per day", type: "Hard", weight: 1, description: "Limits the maximum number of sessions a technician can be assigned per day" },
+      { name: "Skill match preference", type: "Soft", weight: 8, description: "Prefer assigning technicians whose skills match the session requirements" },
+      { name: "Consecutive sessions", type: "Soft", weight: 4, description: "Penalizes consecutive sessions assigned without a break" },
+      { name: "Overtime limit", type: "Hard", weight: 1, description: "Enforces the maximum overtime hours per technician" },
+      { name: "Room capacity", type: "Hard", weight: 1, description: "Ensures the number of assigned technicians does not exceed room capacity" },
+    ],
   },
   {
     id: "PARAM003",
@@ -435,6 +449,13 @@ export const parameterSets: ParameterSet[] = [
       allowOvertime: false,
       conflictPenalty: 10,
     },
+    constraints: [
+      { name: "Max sessions per day", type: "Hard", weight: 1, description: "Limits the maximum number of sessions a technician can be assigned per day" },
+      { name: "Skill match preference", type: "Soft", weight: 4, description: "Prefer assigning technicians whose skills match the session requirements" },
+      { name: "Consecutive sessions", type: "Soft", weight: 7, description: "Penalizes consecutive sessions assigned without a break" },
+      { name: "Overtime limit", type: "Hard", weight: 1, description: "Enforces the maximum overtime hours per technician" },
+      { name: "Room capacity", type: "Hard", weight: 1, description: "Ensures the number of assigned technicians does not exceed room capacity" },
+    ],
   },
   {
     id: "PARAM004",
@@ -454,6 +475,13 @@ export const parameterSets: ParameterSet[] = [
       allowOvertime: true,
       conflictPenalty: 5,
     },
+    constraints: [
+      { name: "Max sessions per day", type: "Hard", weight: 1, description: "Limits the maximum number of sessions a technician can be assigned per day" },
+      { name: "Skill match preference", type: "Soft", weight: 6, description: "Prefer assigning technicians whose skills match the session requirements" },
+      { name: "Consecutive sessions", type: "Soft", weight: 2, description: "Penalizes consecutive sessions assigned without a break" },
+      { name: "Overtime limit", type: "Hard", weight: 1, description: "Enforces the maximum overtime hours per technician" },
+      { name: "Room capacity", type: "Hard", weight: 1, description: "Ensures the number of assigned technicians does not exceed room capacity" },
+    ],
   },
   {
     id: "PARAM005",
@@ -473,6 +501,13 @@ export const parameterSets: ParameterSet[] = [
       allowOvertime: false,
       conflictPenalty: 5,
     },
+    constraints: [
+      { name: "Max sessions per day", type: "Hard", weight: 1, description: "Limits the maximum number of sessions a technician can be assigned per day" },
+      { name: "Skill match preference", type: "Soft", weight: 5, description: "Prefer assigning technicians whose skills match the session requirements" },
+      { name: "Consecutive sessions", type: "Soft", weight: 3, description: "Penalizes consecutive sessions assigned without a break" },
+      { name: "Overtime limit", type: "Hard", weight: 1, description: "Enforces the maximum overtime hours per technician" },
+      { name: "Room capacity", type: "Hard", weight: 1, description: "Ensures the number of assigned technicians does not exceed room capacity" },
+    ],
   },
 ];
 

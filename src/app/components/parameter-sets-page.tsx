@@ -4,9 +4,20 @@ import {
   Paper,
   Typography,
   Box,
+  Table,
+  TableHead,
+  TableBody,
+  TableRow,
+  TableCell,
+  IconButton,
+  Tooltip,
 } from "@mui/material";
+import EditIcon from "@mui/icons-material/Edit";
+import CheckIcon from "@mui/icons-material/Check";
+import CloseIcon from "@mui/icons-material/Close";
 import { Separator } from "./ui/separator";
 import { parameterSets } from "../data/mockData";
+import { Constraint } from "../types/assignment";
 import { useState } from "react";
 
 export function ParameterSetsPage() {
@@ -22,6 +33,37 @@ export function ParameterSetsPage() {
 
   // Check if the author field should be editable
   const isAuthorEditable = (parameterSet.author || parameterSet.createdBy) === "My self";
+
+  // Constraints editing state
+  const [constraints, setConstraints] = useState<Constraint[]>(parameterSet.constraints ?? []);
+  const [editingRows, setEditingRows] = useState<Record<number, number>>({});
+
+  const startEdit = (index: number) => {
+    setEditingRows((prev) => ({ ...prev, [index]: constraints[index].weight }));
+  };
+
+  const cancelEdit = (index: number) => {
+    setEditingRows((prev) => {
+      const next = { ...prev };
+      delete next[index];
+      return next;
+    });
+  };
+
+  const saveEdit = (index: number) => {
+    const newWeight = editingRows[index];
+    setConstraints((prev) =>
+      prev.map((c, i) => (i === index ? { ...c, weight: newWeight } : c))
+    );
+    cancelEdit(index);
+  };
+
+  const handleWeightChange = (index: number, value: string) => {
+    const parsed = parseFloat(value);
+    if (!isNaN(parsed)) {
+      setEditingRows((prev) => ({ ...prev, [index]: parsed }));
+    }
+  };
 
   return (
     <Paper sx={{ p: 3, maxWidth: '1200px', mx: 'auto' }}>
@@ -119,16 +161,77 @@ export function ParameterSetsPage() {
       {/* Divider */}
       <Separator className="my-8" />
 
-      {/* Section 3: Constraints (Placeholder) */}
+      {/* Section 3: Constraints */}
       <Box>
         <Typography variant="h6" component="h2" sx={{ mb: 2 }}>
           Constraints
         </Typography>
-        <Box sx={{ border: 1, borderColor: 'divider', borderRadius: 1, p: 4, textAlign: 'center', color: 'text.secondary' }}>
-          <Typography variant="body2">
-            Constraints data table will be implemented here
-          </Typography>
-        </Box>
+        <Table size="small" sx={{ border: 1, borderColor: 'divider', borderRadius: 1 }}>
+          <TableHead>
+            <TableRow sx={{ backgroundColor: 'action.hover' }}>
+              <TableCell sx={{ fontWeight: 600 }}>Name</TableCell>
+              <TableCell sx={{ fontWeight: 600 }}>Type</TableCell>
+              <TableCell sx={{ fontWeight: 600, width: 160 }}>Weight</TableCell>
+              <TableCell sx={{ fontWeight: 600 }}>Description</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {constraints.length === 0 ? (
+              <TableRow>
+                <TableCell colSpan={4} sx={{ textAlign: 'center', color: 'text.secondary', py: 4 }}>
+                  No constraints defined
+                </TableCell>
+              </TableRow>
+            ) : (
+              constraints.map((constraint, index) => {
+                const isEditing = index in editingRows;
+                return (
+                  <TableRow key={index} hover>
+                    <TableCell>{constraint.name}</TableCell>
+                    <TableCell>{constraint.type}</TableCell>
+                    <TableCell>
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                        {isEditing ? (
+                          <>
+                            <TextField
+                              type="number"
+                              value={editingRows[index]}
+                              onChange={(e) => handleWeightChange(index, e.target.value)}
+                              size="small"
+                              inputProps={{ min: 0, step: 1 }}
+                              sx={{ width: 80 }}
+                              autoFocus
+                            />
+                            <Tooltip title="Save">
+                              <IconButton size="small" color="success" onClick={() => saveEdit(index)}>
+                                <CheckIcon fontSize="small" />
+                              </IconButton>
+                            </Tooltip>
+                            <Tooltip title="Cancel">
+                              <IconButton size="small" color="error" onClick={() => cancelEdit(index)}>
+                                <CloseIcon fontSize="small" />
+                              </IconButton>
+                            </Tooltip>
+                          </>
+                        ) : (
+                          <>
+                            <Box component="span" sx={{ minWidth: 32 }}>{constraint.weight}</Box>
+                            <Tooltip title="Edit weight">
+                              <IconButton size="small" onClick={() => startEdit(index)}>
+                                <EditIcon fontSize="small" />
+                              </IconButton>
+                            </Tooltip>
+                          </>
+                        )}
+                      </Box>
+                    </TableCell>
+                    <TableCell sx={{ color: 'text.secondary' }}>{constraint.description}</TableCell>
+                  </TableRow>
+                );
+              })
+            )}
+          </TableBody>
+        </Table>
       </Box>
     </Paper>
   );

@@ -61,7 +61,7 @@ export function ParameterSetsPage() {
   const isAuthorEditable = (parameterSet.author || parameterSet.createdBy) === "My self";
 
   return (
-    <Paper sx={{ p: 3, maxWidth: '1200px', mx: 'auto' }}>
+    <Paper sx={{ p: 3 }}>
       {/* Title */}
       <Typography variant="h5" component="h1" sx={{ mb: 4, fontWeight: 600 }}>
         Parameter Set
@@ -219,22 +219,9 @@ export function ParameterSetsPage() {
                       )}
                     </TableCell>
                     <TableCell>
-                      <TextField
-                        value={constraint.description}
-                        fullWidth
-                        size="small"
-                        InputProps={{
-                          readOnly: true,
-                        }}
-                        variant="standard"
-                        sx={{
-                          '& .MuiInput-root': {
-                            '&:before': { borderBottom: 'none' },
-                            '&:hover:not(.Mui-disabled):before': { borderBottom: 'none' },
-                            '&:after': { borderBottom: 'none' },
-                          },
-                        }}
-                      />
+                      <Typography variant="body2" sx={{ whiteSpace: 'normal', wordWrap: 'break-word' }}>
+                        {constraint.description}
+                      </Typography>
                     </TableCell>
                   </TableRow>
                 ))}
